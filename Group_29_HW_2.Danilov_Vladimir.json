@@ -330,6 +330,157 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//1. Отправить запрос.\r",
+							"//2. Статус код 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//3. Спарсить response body в json.\r",
+							"let jsonData = pm.response.json()\r",
+							"\r",
+							"//4. Спарсить request.\r",
+							"let req = request.data\r",
+							"\r",
+							"//5. Проверить, что name в ответе равно name s request (name забрать из request.)\r",
+							"let req_name = req.name\r",
+							"let resp_name = jsonData.name\r",
+							"pm.test(\"name\", function () {\r",
+							"    pm.expect(resp_name).to.eql(req_name);\r",
+							"});\r",
+							"//6. Проверить, что age в ответе равно age из request (age забрать из request.)\r",
+							"let req_age = req.age\r",
+							"let resp_age = jsonData.age\r",
+							"pm.test(\"age\", function () {\r",
+							"    pm.expect(resp_age=String(resp_age)).to.eql(req_age);\r",
+							"});\r",
+							"//7. Вывести в консоль параметр salary из request.\r",
+							"\r",
+							"console.log(req.salary)\r",
+							"//8. Вывести в консоль параметр salary из response.\r",
+							"console.log(jsonData.salary)\r",
+							"//9. Вывести в консоль 0-й элемент параметра salary из response.\r",
+							"console.log(jsonData.salary[0])\r",
+							"//10. Вывести в консоль 1-й элемент параметра salary параметр salary из response.\r",
+							"console.log(jsonData.salary[1])\r",
+							"//11. Вывести в консоль 2-й элемент параметра salary параметр salary из response.\r",
+							"console.log(jsonData.salary[2])\r",
+							"//12. Проверить, что 0-й элемент параметра salary равен salary из request (salary забрать из request.)\r",
+							"let element_0 = jsonData.salary[0]\r",
+							"let req_salary = req.salary\r",
+							"pm.test(\"element_0\", function () {\r",
+							"    pm.expect(element_0).to.eql(req_salary=Number(req_salary));\r",
+							"});\r",
+							"//13. Проверить, что 1-й элемент параметра salary равен salary*2 из request (salary забрать из request.)\r",
+							"let element_1 = jsonData.salary[1]\r",
+							"let req_salary_1 = req.salary * 2\r",
+							"pm.test(\"element_1\", function () {\r",
+							"    pm.expect(element_1 = Number(element_1)).to.eql(req_salary_1=Number(req_salary_1));\r",
+							"});\r",
+							"//14. Проверить, что 2-й элемент параметра salary равен salary*3 из request (salary забрать из request.)\r",
+							"let element_2 = jsonData.salary[2]\r",
+							"let req_salary_2 = req.salary * 3\r",
+							"pm.test(\"element_2\", function () {\r",
+							"    pm.expect(element_2 = Number(element_2)).to.eql(req_salary_2=Number(req_salary_2));\r",
+							"});\r",
+							"//15. Создать в окружении переменную name\r",
+							"//New environments -> name\r",
+							"//16. Создать в окружении переменную age\r",
+							"//New environments -> age\r",
+							"//17. Создать в окружении переменную salary\r",
+							"//New environments -> salary\r",
+							"//18. Передать в окружение переменную name\r",
+							"//Body -> name -> {{name}}\r",
+							"//19. Передать в окружение переменную age\r",
+							"//Body -> name -> {{age}}\r",
+							"//20. Передать в окружение переменную salary\r",
+							"//Body -> name -> {{salary}}\r",
+							"//21. Написать цикл который выведет в консоль по порядку элементы списка из параметра salary.\r",
+							"let salary = 5000\r",
+							"let result = 0\r",
+							"for (let i = 1; i <= 3; i++) {\r",
+							"    result += salary\r",
+							"    console.log(result)\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5007/object_info_4?name=Vladimir&age=36&salary=5000",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5007",
+					"path": [
+						"object_info_4"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Vladimir"
+						},
+						{
+							"key": "age",
+							"value": "36"
+						},
+						{
+							"key": "salary",
+							"value": "5000"
+						},
+						{
+							"key": "login",
+							"value": "cfdsv",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "vasvc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
