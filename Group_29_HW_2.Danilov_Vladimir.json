@@ -171,11 +171,6 @@
 							"key": "salary",
 							"value": "5000",
 							"type": "text"
-						},
-						{
-							"key": "token",
-							"value": "\"/s34lfgbj/jkfjkfjn/jjd909/77289kjkWpqc1477hkjvlndj870656evny\"",
-							"type": "text"
 						}
 					]
 				},
@@ -205,11 +200,108 @@
 		},
 		{
 			"name": "3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 1. Отправить запрос.\r",
+							"//Params -> name -> age -> salary -> Get -> S.S.\r",
+							"// 2. Статус код 200 \r",
+							"//OK\r",
+							"// 3. Спарсить response body в json.\r",
+							"let jsonData = pm.response.json();\r",
+							"// 4. Спарсить request.\r",
+							"let req = request.data\r",
+							"// 5. Проверить, что name в ответе равно name s request (name забрать из request.)\r",
+							"//Body -> name,age,salary\r",
+							"let req_name = req.name\r",
+							"let resp_name = jsonData.name\r",
+							"pm.test(\"name\", function () {\r",
+							"    pm.expect(resp_name).to.eql(req_name);\r",
+							"});\r",
+							"\r",
+							"// 6. Проверить, что age в ответе равно age s request (age забрать из request.)\r",
+							"let req_age = req.age\r",
+							"let resp_age = jsonData.age\r",
+							"pm.test(\"age\", function () {\r",
+							"    pm.expect(resp_age).to.eql(req_age);\r",
+							"});\r",
+							"// 7. Проверить, что salary в ответе равно salary s request (salary забрать из request.)\r",
+							"let req_salary = req.salary\r",
+							"let resp_salary = jsonData.salary\r",
+							"req_salary = Number(req_salary)\r",
+							"pm.test(\"salary\", function () {\r",
+							"    pm.expect(resp_salary).to.eql(req_salary);\r",
+							"});\r",
+							"// 8. Вывести в консоль параметр family из response.\r",
+							"console.log(jsonData.family)\r",
+							"// 9. Проверить, что у параметра dog есть параметры name.\r",
+							"console.log(jsonData.family.pets.dog) // уже видно))\r",
+							"\r",
+							"let name_dog = jsonData.family.pets.dog\r",
+							"pm.test(\"name_dog\", function () {\r",
+							"    pm.expect(pm.response.text(name_dog)).to.include(\"name\");\r",
+							"});\r",
+							"// 10. Проверить, что у параметра dog есть параметры age.\r",
+							"let age_dog = jsonData.family.pets.dog\r",
+							"pm.test(\"age_dog\", function () {\r",
+							"    pm.expect(pm.response.text(age_dog)).to.include(\"age\");\r",
+							"});\r",
+							"// 11. Проверить, что параметр name имеет значение Luky.\r",
+							"pm.test(\"dog_name\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.family.pets.dog.name).to.eql('Luky');\r",
+							"});\r",
+							"// 12. Проверить, что параметр age имеет значение 4.\r",
+							"let dog_age = jsonData.family.pets.dog.age\r",
+							"pm.test(\"dog_age\", function () {\r",
+							"    pm.expect(pm.response.text(dog_age)).to.include(\"4\");\r",
+							"});\r",
+							"console.log(jsonData.family.pets.dog.age)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Vladimir",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "36",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "5000",
+							"type": "text"
+						},
+						{
+							"key": "login",
+							"value": "vjkd;csc",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "cdka;s",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://162.55.220.72:5005/object_info_3",
+					"raw": "http://162.55.220.72:5007/object_info_3?name=Vladimir&age=36&salary=5000",
 					"protocol": "http",
 					"host": [
 						"162",
@@ -217,9 +309,23 @@
 						"220",
 						"72"
 					],
-					"port": "5005",
+					"port": "5007",
 					"path": [
 						"object_info_3"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Vladimir"
+						},
+						{
+							"key": "age",
+							"value": "36"
+						},
+						{
+							"key": "salary",
+							"value": "5000"
+						}
 					]
 				}
 			},
