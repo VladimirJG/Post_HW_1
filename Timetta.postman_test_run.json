@@ -1,0 +1,128 @@
+{
+	"id": "4a6f849a-1c12-4987-bd7a-71fd28bd08ad",
+	"name": "Timetta",
+	"timestamp": "2022-08-16T16:38:26.393Z",
+	"collection_id": "19192182-c823fe8a-09bc-416a-8a00-da914a93f250",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "c51f965c-b2a7-441a-9b5f-844f99bd9553",
+			"name": "Get Access Token",
+			"url": "https://auth.timetta.com/connect/token",
+			"time": 598,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				598
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "73afa775-107c-4701-80fb-2987691e7224",
+			"name": "Query ProjectBillingTypes",
+			"url": "https://api.timetta.com/odata/ProjectBillingTypes",
+			"time": 726,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				726
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "db2fd7a9-0d35-4824-be4c-90670a8714f8",
+			"name": "Create Project",
+			"url": "https://api.timetta.com/odata/Projects",
+			"time": 365,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				365
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d82448ed-d0fe-4896-8a7a-f362df15e232",
+			"name": "Patch Project Copy",
+			"url": "https://api.timetta.com/odata/Projects(1bac31db-36b8-414e-913a-b8a907dea5f2)",
+			"time": 662,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				662
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4147a4d1-6b9e-433a-8bf3-0107a615eb4b",
+			"name": "Patch Project Copy 2",
+			"url": "https://api.timetta.com/odata/Projects(1bac31db-36b8-414e-913a-b8a907dea5f2)",
+			"time": 761,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				761
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 3112,
+	"collection": {
+		"requests": [
+			{
+				"id": "c51f965c-b2a7-441a-9b5f-844f99bd9553",
+				"method": "POST"
+			},
+			{
+				"id": "73afa775-107c-4701-80fb-2987691e7224",
+				"method": "GET"
+			},
+			{
+				"id": "db2fd7a9-0d35-4824-be4c-90670a8714f8",
+				"method": "POST"
+			},
+			{
+				"id": "d82448ed-d0fe-4896-8a7a-f362df15e232",
+				"method": "PATCH"
+			},
+			{
+				"id": "4147a4d1-6b9e-433a-8bf3-0107a615eb4b",
+				"method": "PATCH"
+			}
+		]
+	}
+}
